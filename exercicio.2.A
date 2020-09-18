@@ -1,0 +1,23 @@
+% INSTITUTO FEDERAL DA PARAÍBA
+% CURSO SUPERIOR DE BACHARELADO EM ENGENHARIA ELÉTRICA
+% CÁLCULO NUMÉRICO 2020.1
+% EQUACÖES TRANSCENDENTES E ALGÉBRICAS
+% CALCULO DE RAÍZES - MÉTODO DE NEWTON
+% AUTOR: Antonio Batista
+ 
+clear all, close all, clc, 
+TOL=1E-3; Nmax=10;
+x(1)=2;
+fxy='x.^2 - 10.*sin(x)';   gxy='2.*x - 10.*cos(x)';      
+n=1; e(1)=0; CP=1; 
+while(CP>TOL  &&   n<=Nmax)
+   n=n+1;
+   x(n)=x(n-1)-(x(n-1)^2 - 10*sin(x(n-1)))/(2*x(n-1) - 10*cos(x(n-1)));
+   e(n)=abs(x(n)-x(n-1)); CP=e(n);
+end
+X=[(0:length(x)-1)' x' e']; 
+disp('   -----------------------------')
+disp(X)
+disp(['   TOL = ' num2str(TOL)]); 
+disp(['   Iteraçöes: ' num2str(n-1)])
+disp('   -----------------------------')
